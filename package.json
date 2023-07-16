@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node ./util/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "engines": {
     "node": ">=8.3.0"
@@ -24,7 +26,7 @@
     "mongoose": "^7.3.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.0.1",
     "sharp": "^0.32.3",
     "validator": "^13.9.0"
   },

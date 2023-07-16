@@ -12,8 +12,7 @@ const {
   getAllProducts,
   getProduct,
   updateProduct,
-  getStats,
-  uploadImages
+  getStats
 } = productController;
 
 router.route('/top5Discounts').get(aliasTop5Discounts, getAllProducts);
@@ -22,7 +21,7 @@ router.route('/stats').get(getStats);
 router
   .route('/')
   .get(protect, getAllProducts)
-  .post(protect, uploadImages, createProduct);
+  .post(protect, createProduct);
 router
   .route('/:id')
   .get(protect, getProduct)

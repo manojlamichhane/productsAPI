@@ -1,23 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const multer = require('multer');
+
 const productModel = require('../models/productModel');
 const AppError = require('../utils/appError');
 const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
-
-const multerStorage = multer.memoryStorage();
-
-const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
-    cb(null, true);
-  } else {
-    cb(
-      new AppError(400, 'Please uplaod a image', 'invalid file format'),
-      false
-    );
-  }
-};
-const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 exports.aliasTop5Discounts = (req, res, next) => {
   req.query.limit = '5';
@@ -103,8 +89,6 @@ exports.getStats = catchAsync(async (req, res, next) => {
     data: { stat: data }
   });
 });
-
-exports.uploadImages = upload.array('images'[(0, 5)]);
 
 // exports.getStats = async (req, res) => {
 //   try {
