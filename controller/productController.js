@@ -36,7 +36,6 @@ exports.getProduct = catchAsync(async (req, res, next) => {
   });
 });
 exports.createProduct = catchAsync(async (req, res, next) => {
-  console.log('files', req.files);
   const newProduct = await productModel.create(req.body);
   res.status(201).json({
     status: 'success',
