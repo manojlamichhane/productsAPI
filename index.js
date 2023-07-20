@@ -25,7 +25,7 @@ const limiter = rateLimit({
 app.use(cors());
 // to allow cors for get post methods
 
-app.options('*'.cors());
+app.options('*', cors());
 // to allow cors for put patch delete methods
 
 app.use(express.json());
