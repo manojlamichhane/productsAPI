@@ -20,11 +20,11 @@ router.route('/stats').get(getStats);
 
 router
   .route('/')
-  .get(protect, getAllProducts)
-  .post(protect, createProduct);
+  .get(getAllProducts)
+  .post(createProduct);
 router
   .route('/:id')
-  .get(protect, getProduct)
+  .get(getProduct)
   .patch(updateProduct)
   .delete(protect, restrictTo('admin'), deleteProduct);
 
