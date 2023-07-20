@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const { xss } = require('express-xss-sanitizer');
 const hpp = require('hpp');
+const cors = require('cors');
 
 const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
@@ -20,6 +21,12 @@ const limiter = rateLimit({
   message:
     'You have reached the maximum limit to access this api. Pleas try again after an hour!!'
 });
+
+app.use(cors());
+// to allow cors for get post methods
+
+app.options('*'.cors());
+// to allow cors for put patch delete methods
 
 app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
