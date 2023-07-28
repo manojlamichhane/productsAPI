@@ -10,6 +10,7 @@ const cors = require('cors');
 
 const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
+const bookingRouter = require('./routes/bookingRouter');
 const AppError = require('./utils/appError');
 const gloablErrorHandler = require('./controller/errorController');
 
@@ -49,6 +50,7 @@ app.use(hpp());
 
 app.use('/ap1/v1/products', productRouter);
 app.use('/ap1/v1/users', userRouter);
+app.use('/ap1/v1/booking', bookingRouter);
 
 app.all('*', (req, res, next) => {
   const err = new AppError(
@@ -56,7 +58,6 @@ app.all('*', (req, res, next) => {
     `Cannot find ${req.originalUrl} on the server`,
     'NOT FOUND'
   );
-
   next(err);
 });
 
