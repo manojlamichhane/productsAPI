@@ -36,8 +36,9 @@ exports.checkOut = catchAsync(async (req, res, next) => {
     mode: 'payment'
   });
 
-  res.status(200).json({
-    status: 'success',
-    session
-  });
+  res.redirect(303, session.url);
+  // res.status(200).json({
+  //   status: 'success',
+  //   session
+  // });
 });
