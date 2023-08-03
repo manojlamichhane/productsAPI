@@ -16,7 +16,7 @@ exports.checkOut = catchAsync(async (req, res, next) => {
 
   const price = await stripe.prices.create({
     product: product.id,
-    unit_amount: response.price,
+    unit_amount: response.price * 100,
     currency: 'cad'
   });
 
