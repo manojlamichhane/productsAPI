@@ -5,6 +5,6 @@ const { protect } = require('./../controller/authController');
 
 const router = express.Router();
 
-router.get('/checkout-session/:productId', protect, checkOut);
+router.post('/checkout-session', protect, checkOut);
 
 module.exports = router;

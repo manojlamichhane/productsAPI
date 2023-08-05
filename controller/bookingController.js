@@ -3,21 +3,21 @@
 const stripe = require('stripe')(
   'sk_test_51NYfvFHo8tHchr1PTpNIEE0l5ognaf3EK5YPPlC8VZntKXAGziZciDjAGZqVSVLCM4p8hA3Yj6langXYeWdapmPk00mRPBrk1B'
 );
-const productModel = require('../models/productModel');
 const catchAsync = require('../utils/catchAsync');
 
 exports.checkOut = catchAsync(async (req, res, next) => {
-  const response = await productModel.findById(req.params.productId);
-
-  const product = await stripe.products.create({
-    name: response.title,
-    description: response.description
-  });
-
-  const price = await stripe.prices.create({
-    product: product.id,
-    unit_amount: response.price * 100,
-    currency: 'cad'
+  const newArray = req.body.map(item => {
+    const obj = {
+      price_data: {
+        currency: 'cad',
+        product_data: {
+          name: item.title
+        },
+        unit_amount: item.price * 100
+      },
+      quantity: item.quantity
+    };
+    return obj;
   });
 
   const session = await stripe.checkout.sessions.create({
@@ -26,22 +26,10 @@ exports.checkOut = catchAsync(async (req, res, next) => {
     customer_email: req.user.email,
     client_reference_id: req.params.productId,
 
-    line_items: [
-      {
-        price: price.id,
-        quantity: 1
-      }
-    ],
+    line_items: newArray,
 
     mode: 'payment'
   });
 
   res.json({ url: session.url });
-
-  // res.redirect(303, session.url);
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   session
-  // });
 });
