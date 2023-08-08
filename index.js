@@ -13,6 +13,7 @@ const productRouter = require('./routes/productRouter');
 const bookingRouter = require('./routes/bookingRouter');
 const AppError = require('./utils/appError');
 const gloablErrorHandler = require('./controller/errorController');
+const { webHookCheckout } = require('./controller/bookingController');
 
 const app = express();
 
@@ -28,6 +29,12 @@ app.use(cors());
 
 app.options('*', cors());
 // to allow cors for put patch delete methods
+
+app.post(
+  '/webhook',
+  express.raw({ type: 'application/json' }),
+  webHookCheckout
+);
 
 app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
