@@ -62,8 +62,8 @@ const createOrder = catchAsync(async (customer, data) => {
 
 exports.webHookCheckout = (req, res, next) => {
   // This is your Stripe CLI webhook secret for testing your endpoint locally.
-  const endpointSecret =
-    'whsec_8b79e07ae382f029baa2f1efa8f43e78957d2560408609bba5baef8504480fdc';
+  const endpointSecret = 'whsec_wGKqMJnbzKZrTRXd3HhwlyVFBzryDt7q';
+  // 'whsec_8b79e07ae382f029baa2f1efa8f43e78957d2560408609bba5baef8504480fdc';
   const sig = req.headers['stripe-signature'];
 
   let event;
