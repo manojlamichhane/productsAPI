@@ -11,6 +11,7 @@ const cors = require('cors');
 const userRouter = require('./routes/userRouter');
 const productRouter = require('./routes/productRouter');
 const bookingRouter = require('./routes/bookingRouter');
+const orderRouter = require('./routes/orderRouter');
 const AppError = require('./utils/appError');
 const gloablErrorHandler = require('./controller/errorController');
 const { webHookCheckout } = require('./controller/bookingController');
@@ -58,6 +59,7 @@ app.use(hpp());
 app.use('/ap1/v1/products', productRouter);
 app.use('/ap1/v1/users', userRouter);
 app.use('/ap1/v1/booking', bookingRouter);
+app.use('/ap1/v1/orders', orderRouter);
 
 app.all('*', (req, res, next) => {
   const err = new AppError(
