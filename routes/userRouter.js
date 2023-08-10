@@ -13,9 +13,7 @@ const {
   getUser,
   updateUser,
   updateMyData,
-  deleteMe,
-  uploadProfile,
-  resizeUserPhoto
+  deleteMe
 } = userController;
 
 const { signup, login, protect } = authController;
@@ -23,9 +21,7 @@ const { signup, login, protect } = authController;
 router.route('/signup').post(signup);
 router.route('/login').post(login);
 
-router
-  .route('/updateMyData')
-  .patch(protect, uploadProfile, resizeUserPhoto, updateMyData);
+router.route('/updateMyData').patch(protect, updateMyData);
 router.route('/deactivate').delete(protect, deleteMe);
 
 router
