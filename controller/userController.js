@@ -2,8 +2,6 @@
 const userModel = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 
-// const upload = multer({ dest: `${__dirname}/../public/images/users` });
-
 const filterObj = (obj, ...allowedVariables) => {
   const newObj = {};
   Object.keys(obj).forEach(el => {

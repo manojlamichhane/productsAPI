@@ -36,8 +36,8 @@ exports.checkOut = catchAsync(async (req, res, next) => {
     invoice_creation: {
       enabled: true
     },
-    success_url: `http://localhost:3000/`,
-    cancel_url: `http://localhost:3000/cart`,
+    success_url: `https://products-cart-wheat.vercel.app/`,
+    cancel_url: `https://products-cart-wheat.vercel.app/cart`,
     client_reference_id: req.params.productId
   });
   res.json({ url: session.url });
